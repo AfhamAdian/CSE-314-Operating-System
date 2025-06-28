@@ -1,0 +1,217 @@
+diff --git a/Makefile b/Makefile
+index f8c820e..a175d28 100644
+--- a/Makefile
++++ b/Makefile
+@@ -139,6 +139,8 @@ UPROGS=\
+ 	$U/_grind\
+ 	$U/_wc\
+ 	$U/_zombie\
++	$U/_target\
++	$U/_count\
+ 
+ fs.img: mkfs/mkfs README $(UPROGS)
+ 	mkfs/mkfs fs.img README $(UPROGS)
+diff --git a/kernel/defs.h b/kernel/defs.h
+index d1b6bb9..983298c 100644
+--- a/kernel/defs.h
++++ b/kernel/defs.h
+@@ -106,7 +106,9 @@ void            yield(void);
+ int             either_copyout(int user_dst, uint64 dst, void *src, uint64 len);
+ int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
+ void            procdump(void);
+-
++void            setTargetChar(void);
++int             countTargetFreq(void);
++  
+ // swtch.S
+ void            swtch(struct context*, struct context*);
+ 
+diff --git a/kernel/proc.c b/kernel/proc.c
+index 130d9ce..324f05d 100644
+--- a/kernel/proc.c
++++ b/kernel/proc.c
+@@ -6,6 +6,8 @@
+ #include "proc.h"
+ #include "defs.h"
+ 
++char targetChar;
++
+ struct cpu cpus[NCPU];
+ 
+ struct proc proc[NPROC];
+@@ -693,3 +695,31 @@ procdump(void)
+     printf("\n");
+   }
+ }
++
++
++void setTargetChar()
++{
++  int target;
++  argint(0, &target);
++
++  targetChar = (char)target;
++  // printf("Setting target character to '%c'\n", (char)target);
++}
++
++
++int countTargetFreq(void)
++{
++  char strtemp[256];
++  int count = 0;
++
++  argstr(0, strtemp, sizeof(strtemp));
++  printf("%s in kernel", strtemp);
++
++  for( int i = 0; i<strlen(strtemp); i++){
++    if(strtemp[i] == targetChar){
++      count++;
++    }
++  }
++
++  return count;
++}
+\ No newline at end of file
+diff --git a/kernel/proc.h b/kernel/proc.h
+index d021857..32b2223 100644
+--- a/kernel/proc.h
++++ b/kernel/proc.h
+@@ -105,3 +105,5 @@ struct proc {
+   struct inode *cwd;           // Current directory
+   char name[16];               // Process name (debugging)
+ };
++
++// char targetChar;
+\ No newline at end of file
+diff --git a/kernel/syscall.c b/kernel/syscall.c
+index ed65409..6f85f0e 100644
+--- a/kernel/syscall.c
++++ b/kernel/syscall.c
+@@ -101,6 +101,8 @@ extern uint64 sys_unlink(void);
+ extern uint64 sys_link(void);
+ extern uint64 sys_mkdir(void);
+ extern uint64 sys_close(void);
++extern uint64 sys_setTargetChar(void);
++extern uint64 sys_countTargetFreq(void);
+ 
+ // An array mapping syscall numbers from syscall.h
+ // to the function that handles the system call.
+@@ -126,6 +128,8 @@ static uint64 (*syscalls[])(void) = {
+ [SYS_link]    sys_link,
+ [SYS_mkdir]   sys_mkdir,
+ [SYS_close]   sys_close,
++[SYS_setTargetChar] sys_setTargetChar,
++[SYS_countTargetFreq] sys_countTargetFreq,
+ };
+ 
+ void
+diff --git a/kernel/syscall.h b/kernel/syscall.h
+index bc5f356..be9f8b4 100644
+--- a/kernel/syscall.h
++++ b/kernel/syscall.h
+@@ -20,3 +20,5 @@
+ #define SYS_link   19
+ #define SYS_mkdir  20
+ #define SYS_close  21
++#define SYS_setTargetChar 22
++#define SYS_countTargetFreq 23
+\ No newline at end of file
+diff --git a/kernel/sysproc.c b/kernel/sysproc.c
+index 3b4d5bd..079e041 100644
+--- a/kernel/sysproc.c
++++ b/kernel/sysproc.c
+@@ -91,3 +91,17 @@ sys_uptime(void)
+   release(&tickslock);
+   return xticks;
+ }
++
++uint64
++sys_setTargetChar(void)
++{
++  setTargetChar();
++  return 0;
++}
++
++
++uint64 
++sys_countTargetFreq(void)
++{
++  return countTargetFreq();
++}
+\ No newline at end of file
+diff --git a/user/count.c b/user/count.c
+new file mode 100644
+index 0000000..56ed162
+--- /dev/null
++++ b/user/count.c
+@@ -0,0 +1,18 @@
++#include "kernel/types.h"
++#include "kernel/stat.h"
++#include "user/user.h"
++
++int
++main(int argc, char *argv[])
++{
++    if (argc < 2) {
++        fprintf(2, "Usage: count <string>\n");
++        exit(1);
++    }
++
++    char *str = argv[1];
++    int count = countTargetFreq(str);
++    
++    printf("%d\n", count);
++    return 0;
++}
+diff --git a/user/target.c b/user/target.c
+new file mode 100644
+index 0000000..6fc9f68
+--- /dev/null
++++ b/user/target.c
+@@ -0,0 +1,23 @@
++#include "kernel/types.h"
++#include "kernel/stat.h"
++#include "user/user.h"
++
++int
++main(int argc, char *argv[])
++{
++    if(argc < 2) {
++        fprintf(2, "Usage: target <char>\n");
++        exit(1);
++    }
++
++    char c = argv[1][0];
++    if(c < 'a' || c > 'z') {
++        fprintf(2, "Error: Character must be a lowercase letter (a-z)\n");
++        exit(1);
++    }
++
++    setTargetChar(c);
++    printf("Target character set to '%d'\n", c);
++
++    return 0;
++}
+diff --git a/user/user.h b/user/user.h
+index f16fe27..dc13d57 100644
+--- a/user/user.h
++++ b/user/user.h
+@@ -22,6 +22,8 @@ int getpid(void);
+ char* sbrk(int);
+ int sleep(int);
+ int uptime(void);
++void setTargetChar(char c);
++int countTargetFreq(char *str);
+ 
+ // ulib.c
+ int stat(const char*, struct stat*);
+diff --git a/user/usys.pl b/user/usys.pl
+index 01e426e..8e8ff71 100755
+--- a/user/usys.pl
++++ b/user/usys.pl
+@@ -36,3 +36,5 @@ entry("getpid");
+ entry("sbrk");
+ entry("sleep");
+ entry("uptime");
++entry("setTargetChar");
++entry("countTargetFreq");

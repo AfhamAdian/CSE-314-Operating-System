@@ -1,0 +1,48 @@
+Operative 2 arrived at typewriting station at time 1
+Operative 14 arrived at typewriting station at time 1
+Operative 1 arrived at typewriting station at time 2
+Operative 12 arrived at typewriting station at time 2
+Operative 6 arrived at typewriting station at time 2
+Operative 4 arrived at typewriting station at time 2
+Operative 5 arrived at typewriting station at time 2
+Operative 13 arrived at typewriting station at time 3
+Operative 3 arrived at typewriting station at time 5
+Operative 11 arrived at typewriting station at time 5
+Operative 15 arrived at typewriting station at time 5
+Operative 10 arrived at typewriting station at time 7
+Operative 7 arrived at typewriting station at time 8
+Operative 8 arrived at typewriting station at time 9
+Operative 9 arrived at typewriting station at time 10
+Operative 2 has completed document recreation at 11
+Operative 1 has completed document recreation at 12
+Intelligence Staff 1 began reviewing logbook at time 12. Operations completed = 0
+Operative 12 has completed document recreation at 12
+Operative 3 has completed document recreation at 15
+Intelligence Staff 1 completed reviewing logbook at time 15. Operations completed = 0
+Intelligence Staff 2 began reviewing logbook at time 18. Operations completed = 0
+Operative 14 has completed document recreation at 21
+Intelligence Staff 2 completed reviewing logbook at time 21. Operations completed = 0
+Operative 5 has completed document recreation at 22
+Unit 1 has completed document recreation phase at time 22
+Operative 4 has completed document recreation at 22
+Operative 11 has completed document recreation at 25
+Unit 1 completed intelligence distribution at time 25. Total completed operations: 1
+Intelligence Staff 1 began reviewing logbook at time 27. Operations completed = 1
+Intelligence Staff 1 completed reviewing logbook at time 30. Operations completed = 1
+Operative 6 has completed document recreation at 31
+Operative 8 has completed document recreation at 32
+Operative 13 has completed document recreation at 32
+Operative 15 has completed document recreation at 35
+Unit 3 has completed document recreation phase at time 35
+Unit 3 completed intelligence distribution at time 38. Total completed operations: 2
+Intelligence Staff 2 began reviewing logbook at time 38. Operations completed = 2
+Intelligence Staff 2 completed reviewing logbook at time 41. Operations completed = 2
+Operative 10 has completed document recreation at 41
+Intelligence Staff 1 began reviewing logbook at time 42. Operations completed = 2
+Operative 9 has completed document recreation at 42
+Operative 7 has completed document recreation at 45
+Unit 2 has completed document recreation phase at time 45
+Intelligence Staff 1 completed reviewing logbook at time 45. Operations completed = 2
+Unit 2 completed intelligence distribution at time 48. Total completed operations: 3
+All operatives have completed their jobs.
+Total completed operations: 3

@@ -1,0 +1,66 @@
+Operative 13 arrived at typewriting station at time 1
+Operative 2 arrived at typewriting station at time 2
+Operative 14 arrived at typewriting station at time 2
+Operative 9 arrived at typewriting station at time 3
+Operative 16 arrived at typewriting station at time 3
+Operative 8 arrived at typewriting station at time 3
+Operative 3 arrived at typewriting station at time 4
+Operative 11 arrived at typewriting station at time 4
+Operative 19 arrived at typewriting station at time 4
+Operative 20 arrived at typewriting station at time 4
+Operative 1 arrived at typewriting station at time 5
+Operative 7 arrived at typewriting station at time 5
+Operative 18 arrived at typewriting station at time 5
+Operative 4 arrived at typewriting station at time 6
+Operative 6 arrived at typewriting station at time 6
+Operative 10 arrived at typewriting station at time 7
+Operative 5 arrived at typewriting station at time 9
+Operative 15 arrived at typewriting station at time 9
+Operative 17 arrived at typewriting station at time 9
+Operative 12 arrived at typewriting station at time 10
+Intelligence Staff 1 began reviewing logbook at time 10. Operations completed = 0
+Operative 13 has completed document recreation at 11
+Operative 2 has completed document recreation at 12
+Operative 16 has completed document recreation at 13
+Operative 3 has completed document recreation at 14
+Intelligence Staff 2 began reviewing logbook at time 14. Operations completed = 0
+Intelligence Staff 1 completed reviewing logbook at time 15. Operations completed = 0
+Intelligence Staff 2 completed reviewing logbook at time 19. Operations completed = 0
+Operative 9 has completed document recreation at 21
+Operative 14 has completed document recreation at 22
+Operative 8 has completed document recreation at 23
+Operative 11 has completed document recreation at 24
+Intelligence Staff 1 began reviewing logbook at time 25. Operations completed = 0
+Intelligence Staff 2 began reviewing logbook at time 29. Operations completed = 0
+Intelligence Staff 1 completed reviewing logbook at time 30. Operations completed = 0
+Operative 1 has completed document recreation at 31
+Operative 18 has completed document recreation at 32
+Operative 20 has completed document recreation at 33
+Operative 19 has completed document recreation at 34
+Intelligence Staff 2 completed reviewing logbook at time 34. Operations completed = 0
+Intelligence Staff 1 began reviewing logbook at time 40. Operations completed = 0
+Operative 5 has completed document recreation at 41
+Operative 6 has completed document recreation at 42
+Operative 4 has completed document recreation at 43
+Unit 1 has completed document recreation phase at time 43
+Operative 7 has completed document recreation at 44
+Intelligence Staff 2 began reviewing logbook at time 44. Operations completed = 0
+Intelligence Staff 1 completed reviewing logbook at time 45. Operations completed = 0
+Intelligence Staff 2 completed reviewing logbook at time 49. Operations completed = 0
+Operative 17 has completed document recreation at 51
+Unit 4 has completed document recreation phase at time 51
+Operative 10 has completed document recreation at 52
+Unit 2 has completed document recreation phase at time 52
+Operative 12 has completed document recreation at 53
+Operative 15 has completed document recreation at 54
+Unit 3 has completed document recreation phase at time 54
+Unit 1 completed intelligence distribution at time 54. Total completed operations: 1
+Unit 4 completed intelligence distribution at time 59. Total completed operations: 2
+Unit 2 completed intelligence distribution at time 64. Total completed operations: 3
+Unit 3 completed intelligence distribution at time 69. Total completed operations: 4
+Intelligence Staff 1 began reviewing logbook at time 69. Operations completed = 4
+Intelligence Staff 2 began reviewing logbook at time 69. Operations completed = 4
+Intelligence Staff 1 completed reviewing logbook at time 74. Operations completed = 4
+Intelligence Staff 2 completed reviewing logbook at time 74. Operations completed = 4
+All operatives have completed their jobs.
+Total completed operations: 4
